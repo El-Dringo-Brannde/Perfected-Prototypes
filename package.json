@@ -1,0 +1,22 @@
+{
+  "name": "perfected-prototypes",
+  "version": "1.0.0",
+  "description": "An easy way to extend the build in Javascript prototype chains and make JS fun again",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/El-Dringo-Brannde/Perfected-Prototypes.git"
+  },
+  "keywords": [
+    "prototypes"
+  ],
+  "author": "Brandon Dring",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes/issues"
+  },
+  "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme"
+}
