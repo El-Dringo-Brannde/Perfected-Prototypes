@@ -4,7 +4,8 @@
   "description": "An easy way to extend the build in Javascript prototype chains and make JS fun again",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-register",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes/issues"
   },
-  "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme"
+  "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
 }
