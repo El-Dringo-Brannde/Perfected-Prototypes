@@ -1,23 +1,28 @@
-import {expect} from 'chai';
+import { assert } from 'chai';
 import '../src/Array/index';
 
 describe('array prototype', () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    it('should return 1' , () => {
-        expect(arr.first()).to.equal(1);
-    })
+   it('should return 1', () => {
+      assert.equal(arr.first, 1)
+   })
 
-    it('should return 3' , () => {
-        expect(arr.last()).to.equal(9);
-    })
+   it('should return 3', () => {
+      assert.equal(arr.last, 9)
+   })
 
-    it('should return 3' , () => {
-        expect(arr.shuffle()).to.not.deep.equal(arr);
-    })
-    
-    it('should clear the array', () => {
-        arr.clear()
-        expect(arr).to.have.length(0)
-    })
+   it('should return 3', () => {
+      assert.notDeepEqual(arr.shuffle(), arr)
+   })
+
+   it('should clear the array', () => {
+      arr.clear()
+      assert.equal(arr.length, 0)
+   })
+
+   it('should remove all elements of the array ', () => {
+      const array = [1, 2, 2, 2, 2, 3, 4]
+      assert.deepEqual(array.remove(2), [1, 3, 4])
+   })
 })

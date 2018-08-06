@@ -1,4 +1,4 @@
-const merger = require('./../merger')
+const { mergeExtension } = require('./../merger')
 const safeD = require('lodash/get')
 
 const newObject = {};
@@ -8,4 +8,4 @@ newObject.get = function(dereference) {
 }
 
 
-merger(Object.prototype, newObject)
+mergeExtension(Object.prototype, newObject)
