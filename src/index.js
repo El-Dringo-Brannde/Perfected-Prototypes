@@ -1,1 +1,1 @@
-require('./Object/index.js')
+require('./Object/index.js');

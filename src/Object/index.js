@@ -1,11 +1,10 @@
-const { mergeExtension } = require('./../merger')
-const safeD = require('lodash/get')
+const safeD = require('lodash/get');
+const { mergeExtension } = require('./../merger');
 
 const newObject = {};
 
-newObject.get = function(dereference) {
-   return safeD(this, dereference, false)
-}
+newObject.get = function get(dereference) {
+	return safeD(this, dereference, false);
+};
 
-
-mergeExtension(Object.prototype, newObject)
+mergeExtension(Object.prototype, newObject);
