@@ -1,29 +1,32 @@
 {
-  "name": "perfected-prototypes",
-  "version": "1.0.0",
-  "description": "An easy way to extend the build in Javascript prototype chains and make JS fun again",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha --require babel-register",
-    "build": "babel src -d lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/El-Dringo-Brannde/Perfected-Prototypes.git"
-  },
-  "keywords": [
-    "prototypes"
-  ],
-  "author": "Brandon Dring",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes/issues"
-  },
-  "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0"
-  }
+   "name": "perfected-prototypes",
+   "version": "1.0.0",
+   "description": "An easy way to extend the build in Javascript prototype chains and make JS fun again",
+   "main": "index.js",
+   "scripts": {
+      "test": "mocha --require babel-register",
+      "build": "babel src -d lib",
+      "dev": "babel src -d lib && node ./Object/index.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/El-Dringo-Brannde/Perfected-Prototypes.git"
+   },
+   "keywords": [
+      "prototypes"
+   ],
+   "author": "Brandon Dring",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes/issues"
+   },
+   "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme",
+   "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-env": "^1.7.0",
+      "chai": "^4.1.2",
+      "chalk": "^2.4.1",
+      "mocha": "^5.2.0",
+      "nodemon": "^1.18.3"
+   }
 }
