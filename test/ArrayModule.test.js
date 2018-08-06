@@ -11,4 +11,11 @@ describe('array modules', () => {
     it('should return random array in range' , () => {
         expect(rangeArr(3, 30, 5)).to.have.length(5);
     })
+
+    it('should return elements in range' , () => {
+        const tmpArr = rangeArr(3, 30, 5);
+        for(let i = 0; i <= tmpArr.length; i++){
+            expect(i).to.be.closeTo(3, 30);
+        }
+    })
 })
