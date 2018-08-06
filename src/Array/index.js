@@ -27,6 +27,10 @@ newArray.shuffle = function() {
     return newArr
 }
 
+newArray.clear = function(){
+    return this.splice(0, this.length);
+}
+
 merger(Array.prototype, newArray)
 
 export default Array;
