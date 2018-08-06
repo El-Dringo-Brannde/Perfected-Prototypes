@@ -1,1 +1,2 @@
-require('./Object/index.js');
+require('./Object/index');
+require('./Array/index');

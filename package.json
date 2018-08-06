@@ -7,7 +7,7 @@
       "test": "mocha --require babel-register",
       "build": "babel src -d lib",
       "precommit": "npm run prettier",
-      "prepush": "npm run prettier && npm run linter && npm run test",
+      "prepush": "npm run prettier && npm run linter",
       "prettier": "node ./node_modules/.bin/prettier --config .prettierrc.json  './src/**/*.js' --write",
       "linter": "./node_modules/.bin/eslint ./src/**/ --ext .js,  --ignore-pattern 'node_modules/' --fix"
    },
