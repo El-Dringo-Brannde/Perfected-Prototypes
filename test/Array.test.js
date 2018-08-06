@@ -15,4 +15,9 @@ describe('array prototype', () => {
     it('should return 3' , () => {
         expect(arr.shuffle()).to.not.deep.equal(arr);
     })
+    
+    it('should clear the array', () => {
+        arr.clear()
+        expect(arr).to.have.length(0)
+    })
 })
