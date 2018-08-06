@@ -1,4 +1,8 @@
-Array.prototype.first = function() {
+const merger = require('./../merger')
+
+const newArray = {}
+
+newArray.first = function() {
     try {
         return this[0]
     } catch(err) {
@@ -6,7 +10,7 @@ Array.prototype.first = function() {
     }
 }
 
-Array.prototype.last = function() {
+newArray.last = function() {
     try {
         return this[this.length-1]
     } catch(err) {
@@ -14,7 +18,7 @@ Array.prototype.last = function() {
     }
 }
 
-Array.prototype.shuffle = function() {
+newArray.shuffle = function() {
     let newArr = [].concat(this)
     for(let i = newArr.length - 1; i >= 1 ; i--){
         let randEl = Math.floor(Math.random() * i);
@@ -23,20 +27,10 @@ Array.prototype.shuffle = function() {
     return newArr
 }
 
-Array.prototype.types = function(){
-    try {
-        return this.map(el => typeof el)
-    } catch(err) {
-        throw new Error('unexpected error encountered')
-    }
+newArray.clear = function(){
+    return this.splice(0, this.length);
 }
 
-Array.prototype.rangeArr = function(low, high, size) {
-    while(size > 0) {
-        this.push(Math.floor(Math.random() * high) + low)
-        size--
-    }
-    return this
-}
+merger(Array.prototype, newArray)
 
 export default Array;
