@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - node
+  - 9
+os:
+  - osx
+  - linux
+env:
+  - TARGET_ARCH=x64
+before_install:
+  - export DISPLAY=:99.0
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+install:
+  - yarn install
+script:
+  - yarn test
+notifications:
+email: false
