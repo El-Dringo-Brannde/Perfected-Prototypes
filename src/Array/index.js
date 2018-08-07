@@ -6,4 +6,4 @@ const getterArray = require('./getters.js');
 mergeExtension(Array.prototype, extensionArray);
 mergeGetters(Array.prototype, getterArray);
 
-export default Array;
+exports.module = Array;

@@ -1,5 +1,4 @@
-import { assert } from 'chai';
-import { types, rangeArr } from '../src/ArrayModules/index';
+const { assert } = require('chai')
 
 describe('array prototype', () => {
    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
