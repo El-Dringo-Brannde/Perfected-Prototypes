@@ -1,5 +1,5 @@
-import { assert } from 'chai'
-import './../src/index';
+const { assert } = require('chai')
+require('./../src/Object/index')
 
 
 describe('Safe object derefrencing', () => {
