@@ -1,7 +1,8 @@
 const find = require('lodash/find');
 const filter = require('lodash/filter');
+const pull = require('lodash/pull');
 
-const extensionArray = [];
+const extensionArray = {};
 
 extensionArray.shuffle = function shuffle() {
 	const newArr = [].concat(this);
@@ -17,7 +18,7 @@ extensionArray.clear = function clear() {
 };
 
 extensionArray.remove = function remove(selector) {
-	return this.filter(el => el !== selector);
+	return pull(this, selector);
 };
 
 extensionArray.search = function search(selector) {

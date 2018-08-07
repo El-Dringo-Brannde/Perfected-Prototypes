@@ -5,13 +5,10 @@ exports.mergeExtension = function(prototype, newExtension) {
 		if (prototype.hasOwnProperty(key)) {
 			console.warn(`${key} already exists on ${prototype}`);
 			continue;
-		} else {
-			console.log(key, newExtension[key]);
-			Object.defineProperty(prototype, key, {
-				value: newExtension[key],
-				writable: true
-			});
 		}
+		Object.defineProperty(prototype, key, {
+			value: newExtension[key]
+		});
 	}
 };
 

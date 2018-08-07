@@ -1,4 +1,4 @@
-const getterArray = [];
+const getterArray = {};
 
 getterArray.first = {
 	get() {
