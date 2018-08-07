@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - node
-  - 9
+  - '8.9.x'
 os:
   - osx
   - linux
@@ -11,8 +11,8 @@ before_install:
   - export DISPLAY=:99.0
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 install:
-  - yarn install
+  - npm install
 script:
-  - yarn test
+  - npm run test
 notifications:
 email: false
