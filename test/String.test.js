@@ -30,4 +30,11 @@ describe('String prototype', () => {
          assert.equal(str.camelCase(), 'brandonDring')
       })
    })
+
+   describe('HTML escape Case', () => {
+      it('should turn "brandon, kelli, abby & poppy" into "brandon, kelli, abby &amp; poppy"', () => {
+         const str = 'brandon, kelli, abby & poppy'
+         assert.equal(str.HTMLescape(), 'brandon, kelli, abby &amp; poppy')
+      })
+   })
 })
