@@ -1,6 +1,5 @@
 const find = require('lodash/find');
 const filter = require('lodash/filter');
-const pull = require('lodash/pull');
 const nth = require('lodash/nth');
 const difference = require('lodash/difference');
 
@@ -28,8 +27,12 @@ extensionArray.clear = function clear() {
 	return [];
 };
 
+/**
+ * Remove all instances of a value within the array and return new array
+ * @param {*} selector - The value trying to match against
+ */
 extensionArray.remove = function remove(selector) {
-	return pull(this, selector);
+	return this.filter(val => JSON.stringify(val) !== JSON.stringify(selector));
 };
 
 /**
@@ -89,6 +92,14 @@ extensionArray.deepEqual = function deepEqual(arr) {
  */
 extensionArray.findAllObj = function findAllObj(selector) {
 	return filter(this, selector);
+};
+
+/**
+ * Get the unique values of an array
+ * @returns {array} of the unique values
+ */
+extensionArray.unique = function unique() {
+	return [...new Set(this)];
 };
 
 module.exports = extensionArray;

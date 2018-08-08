@@ -49,4 +49,11 @@ describe('String prototype', () => {
          assert.equal(str.contains('poop'), false)
       })
    })
+
+   describe('String unique prototype', () => {
+      it('should give back a unique set of elements from the list', () => {
+         const arr = [1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 6]
+         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6])
+      })
+   })
 })

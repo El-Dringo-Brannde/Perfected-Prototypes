@@ -48,6 +48,11 @@ describe('array prototype', () => {
          const array = [1, 2, 2, 2, 2, 3, 4]
          assert.deepEqual(array.remove(2), [1, 3, 4])
       })
+
+      it('should remove the object from the array ', () => {
+         const array = [{ a: 1 }, { b: 2 }, { c: 3 }]
+         assert.deepEqual(array.remove({ a: 1 }), [{ b: 2 }, { c: 3 }])
+      })
    })
 
    describe('Array findObj prototype', () => {

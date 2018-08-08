@@ -171,7 +171,16 @@ const arr = [1,2,3]
 
 console.log(arr.access(-1))
 // => 3
+```
 
+### *Array.remove()*
+Remove all instances of a value within the array and return new array
+
+```javascript
+const arr[1,2,2,3,4,5]
+
+console.log(arr.remove(2))
+// => [1,3,4,5]
 ```
 
 ### *Array.clear()* 
@@ -193,6 +202,15 @@ console.log(arr)
 // => []
 ```
 
+### *Array.unique()*
+Get the unique values of an array
+``` javascript
+const arr = [1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 6]
+
+console.log(arr.unique())
+// => [1,2,3,4,5,6]
+```
+
 ### *Array.isEmpty()*
 Checks to see if the array is empty 
 
@@ -206,6 +224,61 @@ console.log(arr.isEmpty())
 // => true
 ```
 
+### *Array.findObj()*
+Search for the first value that matches query in array, implemented with lodash 'find' function
+
+Using a function:
+``` javascript
+const users = [
+   { 'user': 'barney', 'age': 36, 'active': true },
+   { 'user': 'fred', 'age': 40, 'active': false },
+   { 'user': 'pebbles', 'age': 1, 'active': true }
+];
+
+
+console.log(users.findObj(o => { return o.age < 40 }))
+// => { 'user': 'barney', 'age': 36, 'active': true }
+```
+
+Using an object:
+```javascript
+
+const users = [
+   { 'user': 'barney', 'age': 36, 'active': true },
+   { 'user': 'fred', 'age': 40, 'active': false },
+   { 'user': 'pebbles', 'age': 1, 'active': true }
+];
+
+console.log(const res = users.findObj({ 'user': 'barney', 'age': 36, 'active': true }))
+// => { 'user': 'barney', 'age': 36, 'active': true }
+```
+
+Using array of values: 
+``` javascript
+const users = [
+   { 'user': 'barney', 'age': 36, 'active': true },
+   { 'user': 'fred', 'age': 40, 'active': false },
+   { 'user': 'pebbles', 'age': 1, 'active': true }
+];
+
+console.log(users.findObj(['active', false]))
+// => { 'user': 'fred', 'age': 40, 'active': false }
+```
+
+
+Using a single level value: 
+
+```javascript
+const users = [
+   { 'user': 'barney', 'age': 36, 'active': true },
+   { 'user': 'fred', 'age': 40, 'active': false },
+   { 'user': 'pebbles', 'age': 1, 'active': true }
+];
+
+console.log(users.findObj('active'))
+// => { 'user': 'barney', 'age': 36, 'active': true }
+
+```
 ### *Array.diff()*
 Find the difference between two arrays, empty if no difference
 
@@ -257,6 +330,16 @@ console.log(str.numberize())
 // => '1,000,000'
 ```
 
+### *String.HTMLescape()*
+Escape a string ready for HTML insertion: Jekyll & Hyde -> Jekyll &amp; Hyde
+
+```javascript
+   const str = 'Jekyll & Hyde'
+
+   console.log(str.HTMLescape())
+   // => 'Jekyll &amp; Hyde'
+```
+
 ### *String.startCase()*
 Capitalize the first letter in every word of the string (good for names)
 ```javascript
@@ -273,11 +356,6 @@ const str = 'The quick brown fox jumps over the lazy dog'
 console.log(str.contains('fox'))
 // => true
 ```
-
-
-
-
-
 
 
 
