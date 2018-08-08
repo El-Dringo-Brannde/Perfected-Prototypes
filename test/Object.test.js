@@ -37,6 +37,22 @@ describe('Object prototypes', () => {
       })
    })
 
+   describe('merge object method', () => {
+      it('should merge two object together', () => {
+         let obj1 = { a: 1 }
+         let obj2 = { b: 2 }
+         assert.deepEqual(obj1.merge(obj2), { a: 1, b: 2 })
+      })
+
+      it('should merge multiple objects together', () => {
+         let obj1 = { a: 1 }
+         let obj2 = { b: 2 }
+         let obj3 = { c: 3 }
+         let obj4 = { d: 4 }
+         assert.deepEqual(obj1.merge(obj2, obj3, obj4), { a: 1, b: 2, c: 3, d: 4 })
+      })
+   })
+
    describe('toArray object method', () => {
       it('should extract all the values from an object and return it as an array ', () => {
          const obj = {
@@ -63,6 +79,22 @@ describe('Object prototypes', () => {
          obj2.a = 2
          assert.deepEqual(obj2, { a: 2 })
          assert.deepEqual(obj, { a: { b: 2 } })
+      })
+   })
+
+   describe('deepEqual prototype method', () => {
+      it('should find that both objects are equal', () => {
+         const obj1 = { a: 1, b: true, c: 'bar', d: x => x * 2 }
+         const obj2 = { a: 1, b: true, c: 'bar', d: x => x * 2 }
+
+         assert.deepEqual(obj1.deepEqual(obj2), true)
+      })
+
+      it('should find that the two objects are NOT equal', () => {
+         const obj1 = { a: 1, b: true}
+         const obj2 = { a: 1, b: true, c: 'bar' }
+
+         assert.deepEqual(obj1.deepEqual(obj2), false)
       })
    })
 })

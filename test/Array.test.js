@@ -48,6 +48,11 @@ describe('array prototype', () => {
          const array = [1, 2, 2, 2, 2, 3, 4]
          assert.deepEqual(array.remove(2), [1, 3, 4])
       })
+
+      it('should remove the object from the array ', () => {
+         const array = [{ a: 1 }, { b: 2 }, { c: 3 }]
+         assert.deepEqual(array.remove({ a: 1 }), [{ b: 2 }, { c: 3 }])
+      })
    })
 
    describe('Array findObj prototype', () => {
@@ -85,6 +90,48 @@ describe('array prototype', () => {
       it('should return true on a empty array', () => {
          const arr = []
          assert.equal(true, arr.isEmpty())
+      })
+   })
+
+   describe('Array access prototype', () => {
+      it('should get the second element of the array', () => {
+         const arr = [1, 2, 3]
+         assert.equal(arr.access(2), 3)
+      })
+
+      it('should get the last element of the array', () => {
+         const arr = [1, 2, 3]
+         assert.equal(arr.access(-1), 3)
+      })
+   })
+
+   describe('Array difference prototype', () => {
+      it('should find no difference between the two arrays', () => {
+         const arr1 = [1, 2, 3]
+         const arr2 = [1, 2, 3]
+         assert.deepEqual(arr1.diff(arr2), [])
+      })
+
+      it('should find the difference of "[2,3]" between the two arrays', () => {
+         const arr1 = [1, 2, 3]
+         const arr2 = [1]
+         assert.deepEqual(arr1.diff(arr2), [2, 3])
+      })
+   })
+
+   describe('Array deepEqual prototype', () => {
+      it('should find that both arrays are equal', () => {
+         const arr1 = [1, false, true, 'foo']
+         const arr2 = [1, false, true, 'foo']
+
+         assert.deepEqual(arr1.deepEqual(arr2), true)
+      })
+
+      it('should find that both arrays are NOT equal', () => {
+         const arr1 = [1, false, true, 'foo']
+         const arr2 = [1, false, true]
+
+         assert.deepEqual(arr1.deepEqual(arr2), false)
       })
    })
 
