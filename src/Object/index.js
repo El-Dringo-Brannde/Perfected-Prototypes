@@ -21,6 +21,19 @@ newObject.isEmpty = function isEmpty() {
 };
 
 /**
+ * Merge x objects together, properties are overwritten by passed in order
+ * @param {...object} objs - The objects passed in to be merged into the first
+ * @returns {object} The new object merged together from the list of sources
+ */
+newObject.merge = function merge(...objs) {
+	let mergedObj = this;
+	objs.forEach(obj => {
+		mergedObj = { ...mergedObj, ...obj };
+	});
+	return mergedObj;
+};
+
+/**
  * Turn the values of the object into an array
  * @returns {[*]} - The values of the existing object
  */
@@ -35,6 +48,16 @@ newObject.toArray = function toArray() {
  */
 newObject.deepCopy = function deepCopy() {
 	return JSON.parse(JSON.stringify(this));
+};
+
+/**
+ * Check the deep equality between two objects
+ * @param {Object} obj - The object to compare equality against
+ * @returns {boolean}
+ */
+
+newObject.deepEqual = function deepEqual(obj) {
+	return JSON.stringify(this) === JSON.stringify(obj);
 };
 
 mergeExtension(Object.prototype, newObject);

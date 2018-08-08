@@ -37,4 +37,16 @@ describe('String prototype', () => {
          assert.equal(str.HTMLescape(), 'brandon, kelli, abby &amp; poppy')
       })
    })
+
+   describe('String contains prototype', () => {
+      it(`should find 'fox' in 'the quick brown fox jumps over the lazy dog'`, () => {
+         const str = 'the quick brown fox jumps over the lazy dog'
+         assert.equal(str.contains('fox'), true)
+      })
+
+      it(`should NOT find 'poop' in 'the quick brown fox jumps over the lazy dog'`, () => {
+         const str = 'the quick brown fox jumps over the lazy dog'
+         assert.equal(str.contains('poop'), false)
+      })
+   })
 })

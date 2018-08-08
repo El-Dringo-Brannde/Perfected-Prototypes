@@ -88,6 +88,48 @@ describe('array prototype', () => {
       })
    })
 
+   describe('Array access prototype', () => {
+      it('should get the second element of the array', () => {
+         const arr = [1, 2, 3]
+         assert.equal(arr.access(2), 3)
+      })
+
+      it('should get the last element of the array', () => {
+         const arr = [1, 2, 3]
+         assert.equal(arr.access(-1), 3)
+      })
+   })
+
+   describe('Array difference prototype', () => {
+      it('should find no difference between the two arrays', () => {
+         const arr1 = [1, 2, 3]
+         const arr2 = [1, 2, 3]
+         assert.deepEqual(arr1.diff(arr2), [])
+      })
+
+      it('should find the difference of "[2,3]" between the two arrays', () => {
+         const arr1 = [1, 2, 3]
+         const arr2 = [1]
+         assert.deepEqual(arr1.diff(arr2), [2, 3])
+      })
+   })
+
+   describe('Array deepEqual prototype', () => {
+      it('should find that both arrays are equal', () => {
+         const arr1 = [1, false, true, 'foo']
+         const arr2 = [1, false, true, 'foo']
+
+         assert.deepEqual(arr1.deepEqual(arr2), true)
+      })
+
+      it('should find that both arrays are NOT equal', () => {
+         const arr1 = [1, false, true, 'foo']
+         const arr2 = [1, false, true]
+
+         assert.deepEqual(arr1.deepEqual(arr2), false)
+      })
+   })
+
    describe('Array findObj all prototype', () => {
       it('should find all elements in the array matching the findObj function', () => {
          const res = users.findAllObj(o => { return o.age < 40 })

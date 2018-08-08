@@ -68,6 +68,81 @@ console.log(foo.try('a.b.c.d.e.f'))
 // => undefined
 ```
 
+### *Object.isEmpty()*
+Test to see if there is any values within your object
+ ```javascript
+ const foo = {}
+
+ console.log(foo.isEmpty())
+ // => true
+ ```
+
+ OR: 
+
+ ```javascript
+const foo = {a:1}
+
+console.log(foo.isEmpty())
+// => false
+ ```
+
+
+### *Object.merge()*
+Merge one or any amount of objects together, with key/value presedence dependent on order of objects passed in
+``` javascript
+const foo = {a:1}
+const bar = {b:2}
+
+console.log(foo.merge(bar))
+// => {a:1, b:2}
+```
+
+OR: 
+
+```javascript
+const foo = {a:1}
+const bar = {b:2}
+const baz = {c:3}
+
+console.log(foo.merge(bar,baz))
+// => {a:1, b:2, c:3}
+```
+
+### *Object.toArray()* 
+Really just `Object.values()`, but extracts all the values into an array
+``` javascript
+const foo = {a:1,b:2,c:3}
+
+console.log(foo.toArray())
+// => [1,2,3]
+```
+
+### *Object.deepCopy()*
+Deep copy the object with `JSON.parse(JSON.stringify())`, erasing any object references
+
+```javascript
+const foo = {a:1, b:2}
+
+const bar = foo.deepCopy()
+bar.a = 2
+
+console.log(bar)
+// => {a:2,b:2}
+
+console.log(foo)
+// => {a:1, b:2}
+```
+
+### *Object.deepEqual()*
+Checks the equality between two objects
+``` javascript
+const obj1 = {a: 1, b:'2'}
+const obj2 = {a: 1, b:'2'}
+
+console.log(obj1.deepEqual(obj2))
+// => true
+```
+
 
 ## Array Methods: 
 ### *Array.first*
@@ -88,6 +163,16 @@ console.log(arr.last)
 // => 5
 ```
 
+### *Array.access()*
+Access values within the array in a python like style, such that negative indexing is allowed
+
+``` javascript
+const arr = [1,2,3]
+
+console.log(arr.access(-1))
+// => 3
+
+```
 
 ### *Array.clear()* 
 Clear the array being worked on, and return a new empty array
@@ -96,8 +181,10 @@ const arr = [1,2,3,4,5]
 
 console.log(arr.clear())
 // => []
+```
 
 OR: 
+```javascript
 
 const arr = [1,2,3,4,5]
 arr.clear()
@@ -119,6 +206,17 @@ console.log(arr.isEmpty())
 // => true
 ```
 
+### *Array.diff()*
+Find the difference between two arrays, empty if no difference
+
+``` javascript
+const arr1 = [1,2,3]
+const arr2 = [1]
+
+console.log(arr1.diff(arr2))
+// => [2,3]
+```
+
 ### *Array.shuffle()*
 Using the current array, shuffle the values and return new array (Doesn't mutate original). 
 
@@ -126,6 +224,17 @@ Using the current array, shuffle the values and return new array (Doesn't mutate
    const arr = [1,2,3,4]
    console.log(arr.shuffle())
    // => [2,3,1,4]
+```
+
+### *Array.deepEqual()*
+Check the equality between two arrays returning a boolean
+
+``` javascript
+   const arr1 = [1,2,false, 'boo']
+   const arr2 = [1,2,false, 'boo']
+   
+   console.log(arr1.deepEqual(arr2))
+   // => true
 ```
 
 ## String Methods
@@ -156,6 +265,15 @@ console.log(str.startCase())
 // => 'Brandon Dring'
 ```
 
+### *String.contains()*
+Check to see if a given value is within a string
+```javascript 
+const str = 'The quick brown fox jumps over the lazy dog'
+
+console.log(str.contains('fox'))
+// => true
+```
+
 
 
 
@@ -168,7 +286,9 @@ Please feel free to add an issue, or create a pull request to add extra function
 
 
 
-#### Special Thanks
+#### Ackowledgements
+
+CDK Global's annual hackathon for giving me the time to work on this.
 
 [prototypes](https://www.npmjs.com/package/prototypes) for the general idea. 
 

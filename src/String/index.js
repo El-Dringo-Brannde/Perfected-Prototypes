@@ -1,4 +1,6 @@
-const { startCase, camelCase, escape } = require('lodash');
+const startCase = require('lodash/startCase');
+const camelCase = require('lodash/camelCase');
+const escape = require('lodash/escape');
 
 const { assignExtensions } = require('./../merger');
 
@@ -34,6 +36,15 @@ newString.camelCase = function camelcase() {
  */
 newString.HTMLescape = function HTMLescape() {
 	return escape(this);
+};
+
+/**
+ * Find if a character sequence is within a string
+ * @param {string} str - The value being searched for
+ * @returns {boolean}
+ */
+newString.contains = function contains(str) {
+	return this.indexOf(str) !== -1;
 };
 
 assignExtensions(String.prototype, newString);

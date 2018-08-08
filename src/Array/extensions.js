@@ -1,4 +1,8 @@
-const { find, filter, pull } = require('lodash');
+const find = require('lodash/find');
+const filter = require('lodash/filter');
+const pull = require('lodash/pull');
+const nth = require('lodash/nth');
+const difference = require('lodash/difference');
 
 const extensionArray = {};
 
@@ -29,6 +33,14 @@ extensionArray.remove = function remove(selector) {
 };
 
 /**
+ * Get the value of the array by the position of the index
+ * @param {number} index - The value being accessed, supports negative indexing
+ */
+extensionArray.access = function access(index) {
+	return nth(this, index);
+};
+
+/**
  * Search for the first value that matches query in array, implemented with lodash 'find' function
  *
  * @param {function|object|array|string} selector - Function:  A truthy function that specifies what your searching for
@@ -47,6 +59,24 @@ extensionArray.findObj = function findObj(selector) {
  */
 extensionArray.isEmpty = function empty() {
 	return this.length === 0;
+};
+
+/**
+ * Find the difference between two arrays
+ * @param {[*]} arr - The array to compare against
+ * @returns {[*]} The array of differences between the two.
+ */
+extensionArray.diff = function diff(arr) {
+	return difference(this, arr);
+};
+
+/**
+ * Check the deep equality of two arrays
+ * @param {array} arr - The other array to check the deep comparison of
+ * @returns {boolean}
+ */
+extensionArray.deepEqual = function deepEqual(arr) {
+	return JSON.stringify(this) === JSON.stringify(arr);
 };
 
 /**
