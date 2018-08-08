@@ -3,7 +3,7 @@ const { mergeExtension } = require('./../merger');
 
 const newObject = {};
 
-newObject.get = function get(dereference) {
+newObject.safe = function safe(dereference) {
 	return safeD(this, dereference, false);
 };
 
