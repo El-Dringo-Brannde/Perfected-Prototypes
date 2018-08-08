@@ -31,9 +31,15 @@ describe('array prototype', () => {
 
 
    describe('Array clear prototype', () => {
-      it('should clear the array', () => {
+      it('should clear the original array', () => {
+         const arr = [1, 2, 3, 4, 5]
          arr.clear()
          assert.equal(arr.length, 0)
+      })
+
+      it('should return an empty array', () => {
+         const arr = [1, 2, 3, 4, 5]
+         assert.equal(arr.clear().length, 0)
       })
    })
 
@@ -44,42 +50,54 @@ describe('array prototype', () => {
       })
    })
 
-   describe('Array search prototype', () => {
-      it('should find the obj in the array with the search function', () => {
-         const res = users.search(o => { return o.age < 40 })
+   describe('Array findObj prototype', () => {
+      it('should find the obj in the array with the findObj function', () => {
+         const res = users.findObj(o => { return o.age < 40 })
          assert.notEqual(res, undefined)
          assert.deepEqual(res, { 'user': 'barney', 'age': 36, 'active': true })
       })
 
       it('should find the obj in the array by passing in the object', () => {
-         const res = users.search({ 'user': 'barney', 'age': 36, 'active': true })
+         const res = users.findObj({ 'user': 'barney', 'age': 36, 'active': true })
          assert.notEqual(res, undefined)
          assert.deepEqual(res, { 'user': 'barney', 'age': 36, 'active': true })
       })
 
       it('should find the obj in the array when passing an array of values to match against', () => {
-         const res = users.search(['active', false])
+         const res = users.findObj(['active', false])
          assert.notEqual(res, undefined)
          assert.deepEqual(res, { 'user': 'fred', 'age': 40, 'active': false })
       })
 
-      it('should find teh obj in the array when just passing in a value to match against', () => {
-         const res = users.search('active')
+      it('should find the obj in the array when just passing in a value to match against', () => {
+         const res = users.findObj('active')
          assert.notEqual(res, undefined)
          assert.deepEqual(res, { 'user': 'barney', 'age': 36, 'active': true })
       })
    })
 
-   describe('Array search all prototype', () => {
-      it('should find all elements in the array matching the search function', () => {
-         const res = users.searchAll(o => { return o.age < 40 })
+   describe('Array empty prototype', () => {
+      it('should return false on a full array', () => {
+         const arr = [1, 2, 3]
+         assert.equal(false, arr.isEmpty())
+      })
+
+      it('should return true on a empty array', () => {
+         const arr = []
+         assert.equal(true, arr.isEmpty())
+      })
+   })
+
+   describe('Array findObj all prototype', () => {
+      it('should find all elements in the array matching the findObj function', () => {
+         const res = users.findAllObj(o => { return o.age < 40 })
          assert.equal(res.length, 2)
          assert.deepEqual(res, [{ 'user': 'barney', 'age': 36, 'active': true },
          { 'user': 'pebbles', 'age': 1, 'active': true }])
       })
 
       it('should find all elements in the array matching the passed in object', () => {
-         const res = users.searchAll({ active: true })
+         const res = users.findAllObj({ active: true })
          assert.equal(res.length, 2)
          assert.deepEqual(res, [{ 'user': 'barney', 'age': 36, 'active': true },
          { 'user': 'pebbles', 'age': 1, 'active': true }])
@@ -87,13 +105,13 @@ describe('array prototype', () => {
 
 
       it('should find all the objects in the array when passing an array of values to match against', () => {
-         const res = users.searchAll(['active', false])
+         const res = users.findAllObj(['active', false])
          assert.equal(res.length, 1)
          assert.deepEqual(res, [{ 'user': 'fred', 'age': 40, 'active': false }])
       })
 
       it('should find the objects in the array when just passing in a value to match against', () => {
-         const res = users.searchAll('active')
+         const res = users.findAllObj('active')
          assert.equal(res.length, 2)
          assert.deepEqual(res, [{ 'user': 'barney', 'age': 36, 'active': true },
          { 'user': 'pebbles', 'age': 1, 'active': true }])
