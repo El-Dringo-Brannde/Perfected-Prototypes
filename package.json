@@ -1,7 +1,7 @@
 {
    "name": "perfected-prototypes",
-   "version": "1.3.1",
-   "description": "An easy way to extend the build in Javascript prototype chains and make JS fun again",
+   "version": "1.4.0",
+   "description": "An easy way to extend the built in Javascript prototype chains and make JS fun again",
    "main": "index.js",
    "scripts": {
       "test": "mocha ",
@@ -16,7 +16,20 @@
       "url": "git+https://github.com/El-Dringo-Brannde/Perfected-Prototypes.git"
    },
    "keywords": [
-      "prototypes"
+      "prototypes",
+      "prototype",
+      "OOP",
+      "Object Orientated Programming",
+      "Functional",
+      "Functional Programming",
+      "Objects",
+      "Arrays",
+      "Strings",
+      "Numbers",
+      "Utility",
+      "Utilities",
+      "Lodash",
+      "Prototype-chain"
    ],
    "author": "Brandon Dring",
    "license": "MIT",
