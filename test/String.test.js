@@ -37,4 +37,23 @@ describe('String prototype', () => {
          assert.equal(str.HTMLescape(), 'brandon, kelli, abby &amp; poppy')
       })
    })
+
+   describe('String contains prototype', () => {
+      it(`should find 'fox' in 'the quick brown fox jumps over the lazy dog'`, () => {
+         const str = 'the quick brown fox jumps over the lazy dog'
+         assert.equal(str.contains('fox'), true)
+      })
+
+      it(`should NOT find 'poop' in 'the quick brown fox jumps over the lazy dog'`, () => {
+         const str = 'the quick brown fox jumps over the lazy dog'
+         assert.equal(str.contains('poop'), false)
+      })
+   })
+
+   describe('String unique prototype', () => {
+      it('should give back a unique set of elements from the list', () => {
+         const arr = [1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 6]
+         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6])
+      })
+   })
 })

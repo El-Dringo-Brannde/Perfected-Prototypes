@@ -1,4 +1,7 @@
-const { find, filter, pull } = require('lodash');
+const find = require('lodash/find');
+const filter = require('lodash/filter');
+const nth = require('lodash/nth');
+const difference = require('lodash/difference');
 
 const extensionArray = {};
 
@@ -24,8 +27,20 @@ extensionArray.clear = function clear() {
 	return [];
 };
 
+/**
+ * Remove all instances of a value within the array and return new array
+ * @param {*} selector - The value trying to match against
+ */
 extensionArray.remove = function remove(selector) {
-	return pull(this, selector);
+	return this.filter(val => JSON.stringify(val) !== JSON.stringify(selector));
+};
+
+/**
+ * Get the value of the array by the position of the index
+ * @param {number} index - The value being accessed, supports negative indexing
+ */
+extensionArray.access = function access(index) {
+	return nth(this, index);
 };
 
 /**
@@ -50,6 +65,24 @@ extensionArray.isEmpty = function empty() {
 };
 
 /**
+ * Find the difference between two arrays
+ * @param {[*]} arr - The array to compare against
+ * @returns {[*]} The array of differences between the two.
+ */
+extensionArray.diff = function diff(arr) {
+	return difference(this, arr);
+};
+
+/**
+ * Check the deep equality of two arrays
+ * @param {array} arr - The other array to check the deep comparison of
+ * @returns {boolean}
+ */
+extensionArray.deepEqual = function deepEqual(arr) {
+	return JSON.stringify(this) === JSON.stringify(arr);
+};
+
+/**
  * Find all instances of Objects in a Array
  * @param {function|object|array|string} selector - Function:  A truthy function that specifies what your searching for
  * @param {Object} selector - Object:  The object trying to be matched in the array
@@ -59,6 +92,14 @@ extensionArray.isEmpty = function empty() {
  */
 extensionArray.findAllObj = function findAllObj(selector) {
 	return filter(this, selector);
+};
+
+/**
+ * Get the unique values of an array
+ * @returns {array} of the unique values
+ */
+extensionArray.unique = function unique() {
+	return [...new Set(this)];
 };
 
 module.exports = extensionArray;
