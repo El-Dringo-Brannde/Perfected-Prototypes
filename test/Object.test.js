@@ -23,6 +23,11 @@ describe('Object prototypes', () => {
          const obj = { foo: { bar: 1 } }
          assert.equal(1, obj.try('foo["bar"]'))
       })
+
+      it('should be able to access array values in a nested obj', () => {
+         const obj = { a: { b: [1, 2, 3] } }
+         assert.equal(1, obj.try('a.b[0]'))
+      })
    });
 
    describe('isEmpty object method', () => {
@@ -52,6 +57,48 @@ describe('Object prototypes', () => {
          assert.deepEqual(obj1.merge(obj2, obj3, obj4), { a: 1, b: 2, c: 3, d: 4 })
       })
    })
+
+   describe('Object map prototype', () => {
+      it('should return the mutated object', () => {
+         const foo = { a: 1, b: 2 }
+         let res = foo.map((key, val) => {
+            key = key + '1'
+            val = val * 2
+            return { [key]: val }
+         })
+         assert.deepEqual(res, { a1: 2, b1: 4 })
+      })
+   })
+
+   describe('Object forEach prototype', () => {
+      it('should match the key value pairs appropriately', () => {
+         const foo = { a: 1, b: 2 }
+         foo.forEach((key, val) => {
+            assert.equal(foo[key], val)
+         })
+      })
+   })
+
+   describe('Object reduce prototype', () => {
+      it('should reduce the values and summate the total of 10', () => {
+         const foo = { a: 1, b: 2, c: 3, d: 4 }
+         assert.equal(10, foo.reduce((prev, [key, val]) => prev + val, 0))
+      })
+
+      it('should reduce the values and create a string', () => {
+         const foo = { a: 'brandon ', b: 'dring ', c: 'rules' }
+         assert.equal('brandon dring rules', foo.reduce((prev, [key, val]) => prev + val, ''))
+      })
+
+      it('should reduce the values and create an array', () => {
+         const foo = { a: 1, b: 2, c: 3, d: 4 }
+         assert.deepEqual([1, 2, 3, 4], foo.reduce((prev, [key, val]) => {
+            prev.push(val)
+            return prev
+         }, []))
+      })
+   })
+
 
    describe('toArray object method', () => {
       it('should extract all the values from an object and return it as an array ', () => {
@@ -91,7 +138,7 @@ describe('Object prototypes', () => {
       })
 
       it('should find that the two objects are NOT equal', () => {
-         const obj1 = { a: 1, b: true}
+         const obj1 = { a: 1, b: true }
          const obj2 = { a: 1, b: true, c: 'bar' }
 
          assert.deepEqual(obj1.deepEqual(obj2), false)

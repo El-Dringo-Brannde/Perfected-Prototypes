@@ -27,6 +27,15 @@ Or Yarn:
 $ yarn add perfected-prototypes
 ```
 
+## Testing 
+
+Simply run a `npm install` to add the testing library
+Then run: 
+```bash
+$ npm run test
+
+```
+
 ## Usage
 Simply require the module into your NodeJS project, no need to assign it to a variable or anything: 
 
@@ -57,16 +66,65 @@ require('perfected-prototypes')
 
 const foo = {
    a: {
-      b: 1
+      b: 1, 
+      c: [1,2,3]
    }
 }
 
-foo.try('a.b')
+console.log(foo.try('a.b'))
 // => 1
+
+console.log(foo.try('a.c[1]'))
+// => 2
 
 console.log(foo.try('a.b.c.d.e.f'))
 // => undefined
 ```
+
+
+### *Object.forEach()* 
+Loop over each key and value returning undefined
+``` javascript 
+const foo = { a: 1, b: 2 }
+
+foo.forEach((key, val) => {
+   console.log(key, val)
+})
+
+// => a 1
+// => b 2
+```
+
+### *Object.map()*
+Similar to `forEach` But this returns the objects returned at the end of the map function
+``` javascript
+const foo = { a: 1, b: 2 }
+
+console.log(foo.map((key, val) => {
+            key = key + '1'
+            val = val * 2
+            return { [key]: val }
+         })
+)
+// => {a1: 2, b2:4}
+```
+
+
+### *Object.reduce()*
+Reduce the values witin an object to summate them 
+``` javascript
+const foo = { a: 1, b: 2, c: 3, d: 4 }
+
+console.log(foo.reduce((prev, [key, val]) => prev + val, 0))
+// => 10
+
+const foo = { a: 1, b: 2, c: 3, d: 4 }
+
+console.log(foo.reduce((prev, [key, val]) => {prev.push(val); return prev}, []))
+// => [1,2,3,4]
+```
+
+
 
 ### *Object.isEmpty()*
 Test to see if there is any values within your object
@@ -115,6 +173,14 @@ const foo = {a:1,b:2,c:3}
 
 console.log(foo.toArray())
 // => [1,2,3]
+```
+
+### *Object.forEach()*
+Loop over the key value pair in the object
+
+```javascript 
+
+
 ```
 
 ### *Object.deepCopy()*
@@ -355,6 +421,31 @@ const str = 'The quick brown fox jumps over the lazy dog'
 
 console.log(str.contains('fox'))
 // => true
+```
+
+
+## Number Methods
+
+### *Number.round()*
+Round a number to a decimal place
+``` javascript 
+
+const num = 1.23456
+
+console.log(num.round())
+
+// => 1
+
+console.log(num.round(2))
+// => 1.23
+```
+
+### *Number.random()*
+Generate a random number between the two parameters
+```javascript
+
+console.log(Number.random(0,5))
+// => Between 0-5
 ```
 
 

@@ -83,7 +83,7 @@ extensionArray.deepEqual = function deepEqual(arr) {
 };
 
 /**
- * Find all instances of Objects in a Array
+ * Find all instances of Objects in a Array (Powered by 'filter' in Lodash)
  * @param {function|object|array|string} selector - Function:  A truthy function that specifies what your searching for
  * @param {Object} selector - Object:  The object trying to be matched in the array
  * @param {Array} selector - Array: The array of values correlating to what is being matched
