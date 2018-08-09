@@ -10,7 +10,7 @@ An extension to the Javascript Object, Array, and String prototype chain. Extend
 - Well tested
 - Easy to install 
 - JSdoc documentated
-- Works both in ES6 and Node.JS
+- Works both in ES5 & up,  and Node.JS
 - Uses `Object.defineProperty` to avoid pollution of chain methods
 - Checks to make sure there isn't overwritten methods 
 
@@ -33,7 +33,6 @@ Simply run a `npm install` to add the testing library
 Then run: 
 ```bash
 $ npm run test
-
 ```
 
 ## Usage
@@ -95,12 +94,12 @@ foo.forEach((key, val) => {
 // => b 2
 ```
 
-### *Object.map()*
-Similar to `forEach` But this returns the objects returned at the end of the map function
+### *Object.mapOver()*
+Similar to `forEach` But this returns the objects returned at the end of the mapOver function
 ``` javascript
 const foo = { a: 1, b: 2 }
 
-console.log(foo.map((key, val) => {
+console.log(foo.mapOver((key, val) => {
             key = key + '1'
             val = val * 2
             return { [key]: val }

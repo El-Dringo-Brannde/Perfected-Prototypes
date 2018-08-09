@@ -11,7 +11,7 @@ const newObject = {};
  * @returns {*|undefined} The value being referenced OR undefined
  */
 newObject.try = function safe(dereference) {
-   return safeD(this, dereference, undefined);
+	return safeD(this, dereference, undefined);
 };
 
 /**
@@ -19,7 +19,7 @@ newObject.try = function safe(dereference) {
  * @returns {boolean}
  */
 newObject.isEmpty = function isEmpty() {
-   return Object.keys(this).length === 0;
+	return Object.keys(this).length === 0;
 };
 
 /**
@@ -28,11 +28,11 @@ newObject.isEmpty = function isEmpty() {
  * @returns {object} The new object merged together from the list of sources
  */
 newObject.merge = function merge(...objs) {
-   let mergedObj = this;
-   objs.forEach(obj => {
-      mergedObj = merger(this, obj);
-   });
-   return mergedObj;
+	let mergedObj = this;
+	objs.forEach(obj => {
+		mergedObj = merger(this, obj);
+	});
+	return mergedObj;
 };
 
 /**
@@ -40,7 +40,7 @@ newObject.merge = function merge(...objs) {
  * @returns {[*]} - The values of the existing object
  */
 newObject.toArray = function toArray() {
-   return Object.values(this);
+	return Object.values(this);
 };
 
 /**
@@ -49,7 +49,7 @@ newObject.toArray = function toArray() {
  * @returns {Object} - The new object with no references to the original
  */
 newObject.deepCopy = function deepCopy() {
-   return JSON.parse(JSON.stringify(this));
+	return JSON.parse(JSON.stringify(this));
 };
 
 /**
@@ -59,7 +59,7 @@ newObject.deepCopy = function deepCopy() {
  */
 
 newObject.deepEqual = function deepEqual(obj) {
-   return JSON.stringify(this) === JSON.stringify(obj);
+	return JSON.stringify(this) === JSON.stringify(obj);
 };
 
 /**
@@ -69,11 +69,11 @@ newObject.deepEqual = function deepEqual(obj) {
  * @param {*} val - the value associated with the key
  * @returns {*} obj - The object returned from modification
  */
-newObject.map = function map(func) {
-   return Object.entries(this).reduce(
-      (prev, [key, val]) => merger(prev, func(key, val)),
-      {}
-   );
+newObject.mapOver = function map(func) {
+	return Object.entries(this).reduce(
+		(prev, [key, val]) => merger(prev, func(key, val)),
+		{}
+	);
 };
 
 /**
@@ -84,8 +84,8 @@ newObject.map = function map(func) {
  * @returns {undefined}
  */
 newObject.forEach = function forEach(func) {
-   Object.entries(this).map(([key, val]) => func(key, val));
-   return undefined;
+	Object.entries(this).map(([key, val]) => func(key, val));
+	return undefined;
 };
 
 /**
@@ -96,10 +96,10 @@ newObject.forEach = function forEach(func) {
  * @returns {*} The value accumulated
  */
 newObject.reduce = function reduce(func, accumulator) {
-   return Object.entries(this).reduce(
-      (prev, [key, val]) => func(prev, [key, val]),
-      accumulator
-   );
+	return Object.entries(this).reduce(
+		(prev, [key, val]) => func(prev, [key, val]),
+		accumulator
+	);
 };
 
 mergeExtension(Object.prototype, newObject);
