@@ -61,7 +61,7 @@ describe('Object prototypes', () => {
    describe('Object map prototype', () => {
       it('should return the mutated object', () => {
          const foo = { a: 1, b: 2 }
-         let res = foo.map((key, val) => {
+         let res = foo.mapOver((key, val) => {
             key = key + '1'
             val = val * 2
             return { [key]: val }
