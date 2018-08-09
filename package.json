@@ -1,11 +1,11 @@
 {
    "name": "perfected-prototypes",
-   "version": "1.6.0",
+   "version": "1.6.1",
    "description": "An easy way to extend the built in Javascript prototype chains and make JS fun again",
    "main": "index.js",
    "scripts": {
       "test": "mocha ",
-      "build": "rm -rf ./lib && cp -r ./src/ ./lib && cp package.json ./lib",
+      "build": "rm -rf ./lib && cp -r ./src/ ./lib && cp package.json ./lib && cp README.md ./lib",
       "precommit": "npm run prettier",
       "prepush": "npm run prettier && npm run linter",
       "prettier": "node ./node_modules/.bin/prettier --config .prettierrc.json  './src/**/*.js' --write",

@@ -1,4 +1,5 @@
 const safeD = require('lodash/get');
+const merger = require('lodash/merge');
 const { mergeExtension } = require('./../merger');
 
 const newObject = {};
@@ -28,7 +29,7 @@ newObject.isEmpty = function isEmpty() {
 newObject.merge = function merge(...objs) {
 	let mergedObj = this;
 	objs.forEach(obj => {
-		mergedObj = { ...mergedObj, ...obj };
+		mergedObj = merger(this, obj);
 	});
 	return mergedObj;
 };
