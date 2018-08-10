@@ -50,10 +50,15 @@ describe('String prototype', () => {
       })
    })
 
-   describe('String unique prototype', () => {
-      it('should give back a unique set of elements from the list', () => {
-         const arr = [1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 6]
-         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6])
+   describe('String isString method', () => {
+      it('should return true for an actual string', () => {
+         const str = 'Im very sleepy'
+         assert.equal(String.isString(str), true)
+      })
+
+      it('should return false for a number', () => {
+         const notStr = 13245
+         assert.equal(String.isString(notStr), false)
       })
    })
 })

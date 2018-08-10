@@ -1,9 +1,11 @@
 const safeD = require('lodash/get');
+const lodashIsObject = require('lodash/isPlainObject');
 const merger = require('lodash/merge');
 
 const { mergeExtension } = require('./../merger');
 
 const newObject = {};
+const mainObj = {};
 
 /**
  * Safely access values within the object and return undefined if value not present
@@ -12,6 +14,15 @@ const newObject = {};
  */
 newObject.try = function safe(dereference) {
 	return safeD(this, dereference, undefined);
+};
+
+/**
+ * Checks to see if the obj is really an object (not array or function)
+ * @param {[*]} potentialObj - The value to determine if an object or not
+ * @returns {boolean}
+ */
+mainObj.isObject = function isObj(potentialObj) {
+	return lodashIsObject(potentialObj);
 };
 
 /**
@@ -103,3 +114,4 @@ newObject.reduce = function reduce(func, accumulator) {
 };
 
 mergeExtension(Object.prototype, newObject);
+mergeExtension(Object, mainObj);

@@ -25,5 +25,14 @@ mainNum.random = function randomGen(start, stop) {
 	return random(start, stop);
 };
 
+/**
+ * Check to see if the value is a number or not
+ * @param {number} num - The value to check
+ * @returns {boolean}
+ */
+mainNum.isNumber = function isNumber(num) {
+	return typeof num === 'number';
+};
+
 mergeExtension(Number, mainNum);
 mergeExtension(Number.prototype, newNum);

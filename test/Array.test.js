@@ -10,21 +10,32 @@ describe('array prototype', () => {
    ];
 
    describe('Array first getter', () => {
+      const array = []
+
       it('should return 1', () => {
          assert.equal(arr.first, 1)
+      })
+
+      it('should return undefined', () => {
+         assert.equal(array.first, undefined)
       })
    })
 
 
    describe('Array last getter', () => {
+      const array = []
       it('should return 3', () => {
          assert.equal(arr.last, 9)
+      })
+
+      it('should return undefined', () => {
+         assert.equal(array.last, undefined)
       })
    })
 
 
    describe('Array shuffle prototype', () => {
-      it('should return 3', () => {
+      it('should not equal the array from it was called on.', () => {
          assert.notDeepEqual(arr.shuffle(), arr)
       })
    })

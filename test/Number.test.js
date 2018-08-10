@@ -26,4 +26,18 @@ describe('Number prototype chain', () => {
          expect(Number.random(0, 5)).to.be.lte(5)
       })
    })
+
+   describe('Number isNumber prototype', () => {
+      it('should return true for an actual number', () => {
+         const num = 12355
+
+         assert.equal(Number.isNumber(num), true)
+      })
+
+      it('should return false for a string of numbers', () => {
+         const notNum = '12345'
+
+         assert.equal(Number.isNumber(notNum), false)
+      })
+   })
 })
