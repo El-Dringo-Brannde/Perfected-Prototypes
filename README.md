@@ -6,7 +6,7 @@ An extension to the Javascript Object, Array, and String prototype chain. Extend
 
 
 ### Features 
-- Small package size (29.1kB)
+- Small package size (~29.1kB)
 - Well tested
 - Easy to install 
 - JSdoc documentated
@@ -174,13 +174,6 @@ console.log(foo.toArray())
 // => [1,2,3]
 ```
 
-### *Object.forEach()*
-Loop over the key value pair in the object
-
-```javascript 
-
-
-```
 
 ### *Object.deepCopy()*
 Deep copy the object with `JSON.parse(JSON.stringify())`, erasing any object references
@@ -206,6 +199,26 @@ const obj2 = {a: 1, b:'2'}
 
 console.log(obj1.deepEqual(obj2))
 // => true
+```
+
+
+### *Object.isObject()*
+Checks to see if the value passed in is an object (not arrays or functions)
+**Also on the actual Object not on the prototype chain**
+``` javascript
+const foo = {}
+const bar = []
+const baz = function() { return 2}
+
+console.log(Object.isObject(foo))
+// => true
+
+console.log(Object.isObject(bar))
+// => false
+
+console.log(Object.isObject(baz))
+// => false
+
 ```
 
 
@@ -422,6 +435,15 @@ console.log(str.contains('fox'))
 // => true
 ```
 
+### *String.isString()*
+Check to see if the value is a string (On the actual `String` object)
+``` javascript 
+const str = 'Hello world!'
+
+console.log(String.isString(str))
+// => true
+```
+
 
 ## Number Methods
 
@@ -445,6 +467,18 @@ Generate a random number between the two parameters
 
 console.log(Number.random(0,5))
 // => Between 0-5
+```
+
+
+### *Number.isNumber()*
+Check to see if the value is a number or not (On the `Number` object not prototype chain)
+
+```javascript 
+const num = 12345
+
+
+console.log(Number.isNumber(num))
+// => true
 ```
 
 

@@ -42,6 +42,23 @@ describe('Object prototypes', () => {
       })
    })
 
+   describe('isObject object method', () => {
+      it('should return true for an actual object', () => {
+         const obj = {}
+         assert.equal(Object.isObject(obj), true)
+      })
+
+      it('should return FALSE for an array', () => {
+         const notObj = []
+         assert.equal(Object.isObject(notObj), false)
+      })
+
+      it('should return FALSE for a function', () => {
+         const notObj = function() { return 1 }
+         assert.equal(Object.isObject(notObj), false)
+      })
+   })
+
    describe('merge object method', () => {
       it('should merge two object together', () => {
          let obj1 = { a: 1 }
@@ -67,6 +84,15 @@ describe('Object prototypes', () => {
             return { [key]: val }
          })
          assert.deepEqual(res, { a1: 2, b1: 4 })
+      })
+
+      it('should return an empty object', () => {
+         const foo = { a: 1, b: 2 }
+         let res = foo.mapOver((key, val) => {
+            key = key + '1'
+            val = val * 2
+         })
+         assert.deepEqual(res, {})
       })
    })
 
