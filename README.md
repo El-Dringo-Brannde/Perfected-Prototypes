@@ -6,11 +6,11 @@ An extension to the Javascript Object, Array, and String prototype chain. Extend
 
 
 ### Features 
-- Small package size (29.1kB)
+- Small package size (~29.1kB)
 - Well tested
 - Easy to install 
 - JSdoc documentated
-- Works both in ES6 and Node.JS
+- Works both in ES5 & up,  and Node.JS
 - Uses `Object.defineProperty` to avoid pollution of chain methods
 - Checks to make sure there isn't overwritten methods 
 
@@ -25,6 +25,14 @@ $ npm install -s perfected-prototypes
 Or Yarn: 
 ``` javascript 
 $ yarn add perfected-prototypes
+```
+
+## Testing 
+
+Simply run a `npm install` to add the testing library
+Then run: 
+```bash
+$ npm run test
 ```
 
 ## Usage
@@ -57,16 +65,65 @@ require('perfected-prototypes')
 
 const foo = {
    a: {
-      b: 1
+      b: 1, 
+      c: [1,2,3]
    }
 }
 
-foo.try('a.b')
+console.log(foo.try('a.b'))
 // => 1
+
+console.log(foo.try('a.c[1]'))
+// => 2
 
 console.log(foo.try('a.b.c.d.e.f'))
 // => undefined
 ```
+
+
+### *Object.forEach()* 
+Loop over each key and value returning undefined
+``` javascript 
+const foo = { a: 1, b: 2 }
+
+foo.forEach((key, val) => {
+   console.log(key, val)
+})
+
+// => a 1
+// => b 2
+```
+
+### *Object.mapOver()*
+Similar to `forEach` But this returns the objects returned at the end of the mapOver function
+``` javascript
+const foo = { a: 1, b: 2 }
+
+console.log(foo.mapOver((key, val) => {
+            key = key + '1'
+            val = val * 2
+            return { [key]: val }
+         })
+)
+// => {a1: 2, b2:4}
+```
+
+
+### *Object.reduce()*
+Reduce the values witin an object to summate them 
+``` javascript
+const foo = { a: 1, b: 2, c: 3, d: 4 }
+
+console.log(foo.reduce((prev, [key, val]) => prev + val, 0))
+// => 10
+
+const foo = { a: 1, b: 2, c: 3, d: 4 }
+
+console.log(foo.reduce((prev, [key, val]) => {prev.push(val); return prev}, []))
+// => [1,2,3,4]
+```
+
+
 
 ### *Object.isEmpty()*
 Test to see if there is any values within your object
@@ -117,6 +174,7 @@ console.log(foo.toArray())
 // => [1,2,3]
 ```
 
+
 ### *Object.deepCopy()*
 Deep copy the object with `JSON.parse(JSON.stringify())`, erasing any object references
 
@@ -141,6 +199,26 @@ const obj2 = {a: 1, b:'2'}
 
 console.log(obj1.deepEqual(obj2))
 // => true
+```
+
+
+### *Object.isObject()*
+Checks to see if the value passed in is an object (not arrays or functions)
+**Also on the actual Object not on the prototype chain**
+``` javascript
+const foo = {}
+const bar = []
+const baz = function() { return 2}
+
+console.log(Object.isObject(foo))
+// => true
+
+console.log(Object.isObject(bar))
+// => false
+
+console.log(Object.isObject(baz))
+// => false
+
 ```
 
 
@@ -354,6 +432,52 @@ Check to see if a given value is within a string
 const str = 'The quick brown fox jumps over the lazy dog'
 
 console.log(str.contains('fox'))
+// => true
+```
+
+### *String.isString()*
+Check to see if the value is a string (On the actual `String` object)
+``` javascript 
+const str = 'Hello world!'
+
+console.log(String.isString(str))
+// => true
+```
+
+
+## Number Methods
+
+### *Number.round()*
+Round a number to a decimal place
+``` javascript 
+
+const num = 1.23456
+
+console.log(num.round())
+
+// => 1
+
+console.log(num.round(2))
+// => 1.23
+```
+
+### *Number.random()*
+Generate a random number between the two parameters
+```javascript
+
+console.log(Number.random(0,5))
+// => Between 0-5
+```
+
+
+### *Number.isNumber()*
+Check to see if the value is a number or not (On the `Number` object not prototype chain)
+
+```javascript 
+const num = 12345
+
+
+console.log(Number.isNumber(num))
 // => true
 ```
 
