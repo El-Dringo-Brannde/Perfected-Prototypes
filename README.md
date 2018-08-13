@@ -81,12 +81,12 @@ console.log(foo.try('a.b.c.d.e.f'))
 ```
 
 
-### *Object.forEach()* 
+### *Object.eachKeyValue()* 
 Loop over each key and value returning undefined
 ``` javascript 
 const foo = { a: 1, b: 2 }
 
-foo.forEach((key, val) => {
+foo.eachKeyValue((key, val) => {
    console.log(key, val)
 })
 
@@ -125,12 +125,12 @@ console.log(foo.reduce((prev, [key, val]) => {prev.push(val); return prev}, []))
 
 
 
-### *Object.isEmpty()*
+### *Object.hasData()*
 Test to see if there is any values within your object
  ```javascript
  const foo = {}
 
- console.log(foo.isEmpty())
+ console.log(foo.hasData())
  // => true
  ```
 
@@ -139,18 +139,18 @@ Test to see if there is any values within your object
  ```javascript
 const foo = {a:1}
 
-console.log(foo.isEmpty())
+console.log(foo.hasData())
 // => false
  ```
 
 
-### *Object.merge()*
+### *Object.mergeObjects()*
 Merge one or any amount of objects together, with key/value presedence dependent on order of objects passed in
 ``` javascript
 const foo = {a:1}
 const bar = {b:2}
 
-console.log(foo.merge(bar))
+console.log(foo.mergeObjects(bar))
 // => {a:1, b:2}
 ```
 
@@ -161,17 +161,8 @@ const foo = {a:1}
 const bar = {b:2}
 const baz = {c:3}
 
-console.log(foo.merge(bar,baz))
+console.log(foo.mergeObjects(bar,baz))
 // => {a:1, b:2, c:3}
-```
-
-### *Object.toArray()* 
-Really just `Object.values()`, but extracts all the values into an array
-``` javascript
-const foo = {a:1,b:2,c:3}
-
-console.log(foo.toArray())
-// => [1,2,3]
 ```
 
 

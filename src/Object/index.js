@@ -29,7 +29,7 @@ mainObj.isObject = function isObj(potentialObj) {
  * Check to see if the object is empty and has no values
  * @returns {boolean}
  */
-newObject.isEmpty = function isEmpty() {
+newObject.hasData = function isEmpty() {
 	return Object.keys(this).length === 0;
 };
 
@@ -38,20 +38,12 @@ newObject.isEmpty = function isEmpty() {
  * @param {...object} objs - The objects passed in to be merged into the first
  * @returns {object} The new object merged together from the list of sources
  */
-newObject.merge = function merge(...objs) {
+newObject.mergeObjects = function merge(...objs) {
 	let mergedObj = this;
 	objs.forEach(obj => {
 		mergedObj = merger(this, obj);
 	});
 	return mergedObj;
-};
-
-/**
- * Turn the values of the object into an array
- * @returns {[*]} - The values of the existing object
- */
-newObject.toArray = function toArray() {
-	return Object.values(this);
 };
 
 /**
@@ -94,7 +86,7 @@ newObject.mapOver = function map(func) {
  * @param {*} val - the value associated with the key
  * @returns {undefined}
  */
-newObject.forEach = function forEach(func) {
+newObject.eachKeyValue = function forEach(func) {
 	Object.entries(this).map(([key, val]) => func(key, val));
 	return undefined;
 };
