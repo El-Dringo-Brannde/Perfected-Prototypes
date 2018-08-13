@@ -30,15 +30,15 @@ describe('Object prototypes', () => {
       })
    });
 
-   describe('isEmpty object method', () => {
+   describe('hasData object method', () => {
       it('should return true since the object is empty', () => {
          const obj = {}
-         assert.equal(true, obj.isEmpty())
+         assert.equal(true, obj.hasData())
       })
 
-      it('should return false since the objist is NOT empty', () => {
+      it('should return false since the obj is NOT empty', () => {
          const obj = { a: 1 }
-         assert.equal(false, obj.isEmpty())
+         assert.equal(false, obj.hasData())
       })
    })
 
@@ -59,11 +59,11 @@ describe('Object prototypes', () => {
       })
    })
 
-   describe('merge object method', () => {
+   describe('mergeObjects  method', () => {
       it('should merge two object together', () => {
          let obj1 = { a: 1 }
          let obj2 = { b: 2 }
-         assert.deepEqual(obj1.merge(obj2), { a: 1, b: 2 })
+         assert.deepEqual(obj1.mergeObjects(obj2), { a: 1, b: 2 })
       })
 
       it('should merge multiple objects together', () => {
@@ -71,7 +71,7 @@ describe('Object prototypes', () => {
          let obj2 = { b: 2 }
          let obj3 = { c: 3 }
          let obj4 = { d: 4 }
-         assert.deepEqual(obj1.merge(obj2, obj3, obj4), { a: 1, b: 2, c: 3, d: 4 })
+         assert.deepEqual(obj1.mergeObjects(obj2, obj3, obj4), { a: 1, b: 2, c: 3, d: 4 })
       })
    })
 
@@ -96,10 +96,10 @@ describe('Object prototypes', () => {
       })
    })
 
-   describe('Object forEach prototype', () => {
+   describe('Object eachKeyValue prototype', () => {
       it('should match the key value pairs appropriately', () => {
          const foo = { a: 1, b: 2 }
-         foo.forEach((key, val) => {
+         foo.eachKeyValue((key, val) => {
             assert.equal(foo[key], val)
          })
       })
@@ -122,21 +122,6 @@ describe('Object prototypes', () => {
             prev.push(val)
             return prev
          }, []))
-      })
-   })
-
-
-   describe('toArray object method', () => {
-      it('should extract all the values from an object and return it as an array ', () => {
-         const obj = {
-            a: 1,
-            b: 2
-         }
-         assert.deepEqual([1, 2], obj.toArray())
-      })
-      it('should return an empty array with an empty object ', () => {
-         const obj = {}
-         assert.deepEqual([], obj.toArray())
       })
    })
 
