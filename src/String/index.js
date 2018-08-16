@@ -20,7 +20,7 @@ newString.numberize = function numberize() {
  * @returns {string}
  */
 newString.startCase = function startcase() {
-	return startCase(this);
+	return startCase(this.toLowerCase());
 };
 
 /**
@@ -28,7 +28,7 @@ newString.startCase = function startcase() {
  * @returns {string}
  */
 newString.camelCase = function camelcase() {
-	return camelCase(this);
+	return camelCase(this.toLowerCase());
 };
 
 /**
