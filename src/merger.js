@@ -31,6 +31,6 @@ exports.mergeGetters = (prototype, getter) => {
 			Object.defineProperty(prototype, key, getter[key]);
 		} catch (error) {
 			console.log(`${key} already exists on ${prototype}`);
-		}	
+		}
 	}
 };

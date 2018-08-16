@@ -2,6 +2,7 @@ const find = require('lodash/find');
 const filter = require('lodash/filter');
 const nth = require('lodash/nth');
 const difference = require('lodash/difference');
+const uniqBy = require('lodash/uniqBy');
 
 const extensionArray = {};
 
@@ -100,6 +101,15 @@ extensionArray.findAllObj = function findAllObj(selector) {
  */
 extensionArray.unique = function unique() {
 	return [...new Set(this)];
+};
+
+/**
+ * Get a unique set of objects within an array.
+ * @param {string} selector - the key of the object to filter unique values by
+ * @returns {array} of the unique values
+ */
+extensionArray.uniqueBy = function unique(selector) {
+	return uniqBy(this, selector);
 };
 
 module.exports = extensionArray;

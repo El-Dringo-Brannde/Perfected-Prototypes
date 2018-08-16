@@ -280,6 +280,17 @@ console.log(arr.unique())
 // => [1,2,3,4,5,6]
 ```
 
+### *Array.uniqueBy()*
+Filter an array of objects to unique set of objects by some selector
+
+``` javascript
+const arr = [{ name: 'bob', job: 'wood' }, { name: 'bob', job: 'wood' }]
+
+console.log(arr.uniqueBy('name'))
+// => [{ name: 'bob', job: 'wood' }]
+
+```
+
 ### *Array.isEmpty()*
 Checks to see if the array is empty 
 
