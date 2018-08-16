@@ -2,13 +2,13 @@
 
 exports.mergeExtension = function(prototype, newExtension) {
 	for (var key in newExtension) {
-		if (prototype.hasOwnProperty(key)) {
-			console.warn(`${key} already exists on ${prototype}`);
-			continue;
+		try {
+			Object.defineProperty(prototype, key, {
+				value: newExtension[key]
+			});
+		} catch (error) {
+			console.log(`${key} already exists on ${prototype}`);
 		}
-		Object.defineProperty(prototype, key, {
-			value: newExtension[key]
-		});
 	}
 };
 
@@ -27,10 +27,10 @@ exports.assignExtensions = function(originalProto, extension) {
 
 exports.mergeGetters = (prototype, getter) => {
 	for (var key in getter) {
-		if (prototype.hasOwnProperty(key)) {
-			console.warn(`${key} already exists on ${prototype}`);
-			continue;
+		try {
+			Object.defineProperty(prototype, key, getter[key]);
+		} catch (error) {
+			console.log(`${key} already exists on ${prototype}`);
 		}
-		Object.defineProperty(prototype, key, getter[key]);
 	}
 };

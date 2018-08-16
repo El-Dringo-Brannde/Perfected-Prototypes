@@ -146,6 +146,30 @@ describe('array prototype', () => {
       })
    })
 
+   describe('Array unique prototype', () => {
+      it('should remove all instances of the duplicates from the array', () => {
+         const arr = [1, 2, 2, 2, 2, 3, 4, 5, 6, 7]
+         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6, 7])
+      })
+
+      it('should remove all instances of the string from the array', () => {
+         const arr = ['bob', 'tom', 'joe', 'joe', 'joe']
+         assert.deepEqual(arr.unique(), ['bob', 'tom', 'joe',])
+      })
+   })
+
+   describe('Array uniqueBy prototype', () => {
+      it('should remove all instances of the duplicate objects from the array', () => {
+         const arr = [{ name: 'bob', job: 'wood' }, { name: 'bob', job: 'wood' }]
+         assert.deepEqual(arr.uniqueBy('name'), [{ name: 'bob', job: 'wood' }])
+      })
+
+      it('should remove all instances of the duplicate objects from the array', () => {
+         const arr = [{ name: 'bob', job: 'wood' }, { name: 'bob', job: 'wood' }]
+         assert.deepEqual(arr.uniqueBy('job'), [{ name: 'bob', job: 'wood' }])
+      })
+   })
+
    describe('Array findObj all prototype', () => {
       it('should find all elements in the array matching the findObj function', () => {
          const res = users.findAllObj(o => { return o.age < 40 })
