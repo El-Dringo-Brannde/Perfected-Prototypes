@@ -22,11 +22,21 @@ describe('String prototype', () => {
          const str = 'brandon dring'
          assert.equal(str.startCase(), 'Brandon Dring')
       })
+
+      it('should turn BRANDON DRING to Brandon Dring', () => {
+         const str = 'BRANDON DRING'
+         assert.equal(str.startCase(), 'Brandon Dring')
+      })
    })
 
    describe('Camel Case', () => {
       it('should turn Brandon Dring into brandonDring', () => {
          const str = 'Brandon Dring'
+         assert.equal(str.camelCase(), 'brandonDring')
+      })
+
+      it('should turn BRANDON DRING to brandonDring', () => {
+         const str = 'BRANDON DRING'
          assert.equal(str.camelCase(), 'brandonDring')
       })
    })

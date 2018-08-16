@@ -1,6 +1,6 @@
 {
    "name": "perfected-prototypes",
-   "version": "2.1.0",
+   "version": "2.1.1",
    "description": "An easy way to extend the built in Javascript prototype chains and make JS fun again",
    "main": "index.js",
    "scripts": {
