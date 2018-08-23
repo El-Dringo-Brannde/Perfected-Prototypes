@@ -1,3 +1,4 @@
+const findIndex = require('lodash/findindex');
 const find = require('lodash/find');
 const filter = require('lodash/filter');
 const nth = require('lodash/nth');
@@ -32,7 +33,21 @@ extensionArray.clear = function clear() {
  * @param {*} selector - The value trying to match against
  */
 extensionArray.remove = function remove(selector) {
-	return this.filter(val => JSON.stringify(val) !== JSON.stringify(selector));
+	if(selector !== null && typeof selector === 'object'){
+        var index = findIndex(this, selector);
+        while(index >= 0){
+			this.splice(index, 1);
+			// To prevent starting from the beginning of the array
+            index = findIndex(this, selector, index);
+        }  
+    } else{
+        var index = this.indexOf(selector);
+        while(index >= 0){
+            this.splice(index, 1);
+            index = this.indexOf(selector, index);
+        }  
+    }
+    return this;
 };
 
 /**
