@@ -246,7 +246,7 @@ console.log(arr.access(-1))
 Remove all instances of a value within the array and return new array
 
 ```javascript
-const arr[1,2,2,3,4,5]
+const arr = [1,2,2,3,4,5]
 
 console.log(arr.remove(2))
 // => [1,3,4,5]
