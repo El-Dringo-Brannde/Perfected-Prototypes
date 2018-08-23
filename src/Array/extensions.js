@@ -1,4 +1,4 @@
-const findIndex = require('lodash/findindex');
+const findIndex = require('lodash/findIndex');
 const find = require('lodash/find');
 const filter = require('lodash/filter');
 const nth = require('lodash/nth');
@@ -38,7 +38,7 @@ extensionArray.remove = function remove(selector) {
         while(index >= 0){
 			this.splice(index, 1);
 			// To prevent starting from the beginning of the array
-            index = findIndex(this, selector, index);
+        	index = findIndex(this, selector, index);
         }  
     } else{
         var index = this.indexOf(selector);
