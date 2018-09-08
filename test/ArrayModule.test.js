@@ -35,6 +35,7 @@ describe('array prototype', () => {
       it('should remove all elements of the array ', () => {
          const array = [1, 2, 2, 2, 2, 3, 4]
          assert.deepEqual(array.remove(2), [1, 3, 4])
+         assert.deepEqual(array, [1, 3, 4])
       })
    })
 })
