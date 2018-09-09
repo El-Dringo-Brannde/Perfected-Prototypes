@@ -252,6 +252,22 @@ console.log(arr.remove(2))
 // => [1,3,4,5]
 ```
 
+### *Array.yank()* 
+Returns and removes the specified values and mutates the actual array
+``` javascript
+const arr = [1,2,3,4,5]
+
+console.log(arr.yank(2))
+// => 2
+console.log(arr)
+// => [1,3,4,5]
+
+console.log(arr.yank([3,4]))
+// => [3,4]
+console.log(arr)
+// => [1,2,5]
+```
+
 ### *Array.clear()* 
 Clear the array being worked on, and return a new empty array
 ``` javascript 
