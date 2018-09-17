@@ -53,6 +53,7 @@ extensionArray.remove = function remove(selector) {
 /**
  * Remove all instances of a value within the array and return the removed value
  * @param {*} value - The value trying to match against
+ * @returns {*}     - Value removed from the array 
  */
 extensionArray.yank = function yank(value){
     if (value.constructor === Array) {        
@@ -63,14 +64,16 @@ extensionArray.yank = function yank(value){
                 // Remove it from the given array so when we return it, it doesnt 
                 // return a number that was not removed
                 value.remove(value[i]);
+                i -= 1;             //array shrinks after removing so need to check previous element 
             }                
         }
+        if(value.isEmpty()) return null;
         return value;
     } else if (this.includes(value)) {
         this.remove(value);
         return value;
     } else{
-        throw "Value not in the array";
+        return null;
     }
 }
 

@@ -81,6 +81,16 @@ describe('array prototype', () => {
        const array3 = [1, 2, 2, 2, 2, 3, 4]
        assert.deepEqual(array3.yank([4,5]), [4])
        assert.deepEqual(array3, [1, 2, 2, 2, 2, 3])
+
+       const array4 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array4.yank(5), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5,6,7]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
      })
     })
 
