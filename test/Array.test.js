@@ -68,6 +68,32 @@ describe('array prototype', () => {
       })
    })
 
+   describe('Array yank prototype', () => {
+     it('should return removed values and mutate the array ', () => {
+       const array = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array.yank(2), 2)
+       assert.deepEqual(array, [1, 3, 4])
+
+       const array2 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array2.yank([3,4]), [3,4])
+       assert.deepEqual(array2, [1, 2, 2, 2, 2])
+
+       const array3 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array3.yank([4,5]), [4])
+       assert.deepEqual(array3, [1, 2, 2, 2, 2, 3])
+
+       const array4 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array4.yank(5), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5,6,7]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+     })
+    })
+
    describe('Array findObj prototype', () => {
       it('should find the obj in the array with the findObj function', () => {
          const res = users.findObj(o => { return o.age < 40 })
