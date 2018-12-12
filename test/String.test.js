@@ -22,11 +22,21 @@ describe('String prototype', () => {
          const str = 'brandon dring'
          assert.equal(str.startCase(), 'Brandon Dring')
       })
+
+      it('should turn BRANDON DRING to Brandon Dring', () => {
+         const str = 'BRANDON DRING'
+         assert.equal(str.startCase(), 'Brandon Dring')
+      })
    })
 
    describe('Camel Case', () => {
       it('should turn Brandon Dring into brandonDring', () => {
          const str = 'Brandon Dring'
+         assert.equal(str.camelCase(), 'brandonDring')
+      })
+
+      it('should turn BRANDON DRING to brandonDring', () => {
+         const str = 'BRANDON DRING'
          assert.equal(str.camelCase(), 'brandonDring')
       })
    })
@@ -50,10 +60,15 @@ describe('String prototype', () => {
       })
    })
 
-   describe('String unique prototype', () => {
-      it('should give back a unique set of elements from the list', () => {
-         const arr = [1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 5, 5, 6]
-         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6])
+   describe('String isString method', () => {
+      it('should return true for an actual string', () => {
+         const str = 'Im very sleepy'
+         assert.equal(String.isString(str), true)
+      })
+
+      it('should return false for a number', () => {
+         const notStr = 13245
+         assert.equal(String.isString(notStr), false)
       })
    })
 })

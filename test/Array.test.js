@@ -10,21 +10,32 @@ describe('array prototype', () => {
    ];
 
    describe('Array first getter', () => {
+      const array = []
+
       it('should return 1', () => {
          assert.equal(arr.first, 1)
+      })
+
+      it('should return undefined', () => {
+         assert.equal(array.first, undefined)
       })
    })
 
 
    describe('Array last getter', () => {
+      const array = []
       it('should return 3', () => {
          assert.equal(arr.last, 9)
+      })
+
+      it('should return undefined', () => {
+         assert.equal(array.last, undefined)
       })
    })
 
 
    describe('Array shuffle prototype', () => {
-      it('should return 3', () => {
+      it('should not equal the array from it was called on.', () => {
          assert.notDeepEqual(arr.shuffle(), arr)
       })
    })
@@ -47,13 +58,41 @@ describe('array prototype', () => {
       it('should remove all elements of the array ', () => {
          const array = [1, 2, 2, 2, 2, 3, 4]
          assert.deepEqual(array.remove(2), [1, 3, 4])
+         assert.deepEqual(array, [1, 3, 4])
       })
 
       it('should remove the object from the array ', () => {
          const array = [{ a: 1 }, { b: 2 }, { c: 3 }]
          assert.deepEqual(array.remove({ a: 1 }), [{ b: 2 }, { c: 3 }])
+         assert.deepEqual(array, [{ b: 2 }, { c: 3 }])
       })
    })
+
+   describe('Array yank prototype', () => {
+     it('should return removed values and mutate the array ', () => {
+       const array = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array.yank(2), 2)
+       assert.deepEqual(array, [1, 3, 4])
+
+       const array2 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array2.yank([3,4]), [3,4])
+       assert.deepEqual(array2, [1, 2, 2, 2, 2])
+
+       const array3 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array3.yank([4,5]), [4])
+       assert.deepEqual(array3, [1, 2, 2, 2, 2, 3])
+
+       const array4 = [1, 2, 2, 2, 2, 3, 4]
+       assert.deepEqual(array4.yank(5), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5,6,7]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+
+       assert.deepEqual(array4.yank([5]), null)
+       assert.deepEqual(array4, [1, 2, 2, 2, 2, 3, 4])
+     })
+    })
 
    describe('Array findObj prototype', () => {
       it('should find the obj in the array with the findObj function', () => {
@@ -132,6 +171,30 @@ describe('array prototype', () => {
          const arr2 = [1, false, true]
 
          assert.deepEqual(arr1.deepEqual(arr2), false)
+      })
+   })
+
+   describe('Array unique prototype', () => {
+      it('should remove all instances of the duplicates from the array', () => {
+         const arr = [1, 2, 2, 2, 2, 3, 4, 5, 6, 7]
+         assert.deepEqual(arr.unique(), [1, 2, 3, 4, 5, 6, 7])
+      })
+
+      it('should remove all instances of the string from the array', () => {
+         const arr = ['bob', 'tom', 'joe', 'joe', 'joe']
+         assert.deepEqual(arr.unique(), ['bob', 'tom', 'joe',])
+      })
+   })
+
+   describe('Array uniqueBy prototype', () => {
+      it('should remove all instances of the duplicate objects from the array', () => {
+         const arr = [{ name: 'bob', job: 'wood' }, { name: 'bob', job: 'wood' }]
+         assert.deepEqual(arr.uniqueBy('name'), [{ name: 'bob', job: 'wood' }])
+      })
+
+      it('should remove all instances of the duplicate objects from the array', () => {
+         const arr = [{ name: 'bob', job: 'wood' }, { name: 'bob', job: 'wood' }]
+         assert.deepEqual(arr.uniqueBy('job'), [{ name: 'bob', job: 'wood' }])
       })
    })
 

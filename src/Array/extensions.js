@@ -1,7 +1,9 @@
+const findIndex = require('lodash/findIndex');
 const find = require('lodash/find');
 const filter = require('lodash/filter');
 const nth = require('lodash/nth');
 const difference = require('lodash/difference');
+const uniqBy = require('lodash/uniqBy');
 
 const extensionArray = {};
 
@@ -32,8 +34,49 @@ extensionArray.clear = function clear() {
  * @param {*} selector - The value trying to match against
  */
 extensionArray.remove = function remove(selector) {
-	return this.filter(val => JSON.stringify(val) !== JSON.stringify(selector));
+	if(selector !== null && typeof selector === 'object'){
+        var index = findIndex(this, selector);
+        while(index >= 0){
+			this.splice(index, 1);
+			// To prevent starting from the beginning of the array
+        	index = findIndex(this, selector, index);
+        }  
+    } else{
+        var index = this.indexOf(selector);
+        while(index >= 0){
+            this.splice(index, 1);
+            index = this.indexOf(selector, index);
+        }  
+    }
+    return this;
 };
+
+/**
+ * Remove all instances of a value within the array and return the removed value
+ * @param {*} value - The value trying to match against
+ * @returns {*}     - Value removed from the array 
+ */
+extensionArray.yank = function yank(value){
+    if (value.constructor === Array) {        
+        for (let i = 0; i < value.length; i++) {
+            if(this.includes(value[i])){ 
+               this.remove(value[i]);
+            }else{
+                // Remove it from the given array so when we return it, it doesnt 
+                // return a number that was not removed
+                value.remove(value[i]);
+                i -= 1;             //array shrinks after removing so need to check previous element 
+            }                
+        }
+        if(value.isEmpty()) return null;
+        return value;
+    } else if (this.includes(value)) {
+        this.remove(value);
+        return value;
+    } else{
+        return null;
+    }
+}
 
 /**
  * Get the value of the array by the position of the index
@@ -83,7 +126,7 @@ extensionArray.deepEqual = function deepEqual(arr) {
 };
 
 /**
- * Find all instances of Objects in a Array
+ * Find all instances of Objects in a Array (Powered by 'filter' in Lodash)
  * @param {function|object|array|string} selector - Function:  A truthy function that specifies what your searching for
  * @param {Object} selector - Object:  The object trying to be matched in the array
  * @param {Array} selector - Array: The array of values correlating to what is being matched
@@ -100,6 +143,15 @@ extensionArray.findAllObj = function findAllObj(selector) {
  */
 extensionArray.unique = function unique() {
 	return [...new Set(this)];
+};
+
+/**
+ * Get a unique set of objects within an array.
+ * @param {string} selector - the key of the object to filter unique values by
+ * @returns {array} of the unique values
+ */
+extensionArray.uniqueBy = function unique(selector) {
+	return uniqBy(this, selector);
 };
 
 module.exports = extensionArray;

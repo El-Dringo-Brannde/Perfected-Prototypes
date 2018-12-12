@@ -1,11 +1,11 @@
 {
    "name": "perfected-prototypes",
-   "version": "1.6.0",
+   "version": "2.1.1",
    "description": "An easy way to extend the built in Javascript prototype chains and make JS fun again",
    "main": "index.js",
    "scripts": {
-      "test": "mocha ",
-      "build": "rm -rf ./lib && cp -r ./src/ ./lib && cp package.json ./lib",
+      "test": "./node_modules/.bin/mocha --require babel-register",
+      "build": "rm -rf ./lib && ./node_modules/.bin/babel src -d lib  && cp package.json ./lib && cp README.md ./lib",
       "precommit": "npm run prettier",
       "prepush": "npm run prettier && npm run linter",
       "prettier": "node ./node_modules/.bin/prettier --config .prettierrc.json  './src/**/*.js' --write",
@@ -38,6 +38,8 @@
    },
    "homepage": "https://github.com/El-Dringo-Brannde/Perfected-Prototypes#readme",
    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-env": "^1.7.0",
       "chai": "^4.1.2",
       "eslint": "^4.19.1",
       "eslint-config-airbnb-base": "^13.0.0",

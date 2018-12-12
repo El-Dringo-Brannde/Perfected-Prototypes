@@ -11,6 +11,18 @@
       "indent": 0,
       "no-tabs": 0,
       "comma-dangle": 0,
-      "no-plusplus": 0
+      "no-plusplus": 0,
+      "require-jsdoc": [
+         "error",
+         {
+            "require": {
+               "FunctionDeclaration": true,
+               "MethodDefinition": false,
+               "ClassDeclaration": false,
+               "ArrowFunctionExpression": false,
+               "FunctionExpression": false
+            }
+         }
+      ]
    }
 }

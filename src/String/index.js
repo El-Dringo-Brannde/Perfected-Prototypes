@@ -5,6 +5,7 @@ const escape = require('lodash/escape');
 const { assignExtensions } = require('./../merger');
 
 const newString = {};
+const mainString = {};
 
 /**
  * Insert appropriate commas into a string of numbers
@@ -19,7 +20,7 @@ newString.numberize = function numberize() {
  * @returns {string}
  */
 newString.startCase = function startcase() {
-	return startCase(this);
+	return startCase(this.toLowerCase());
 };
 
 /**
@@ -27,7 +28,7 @@ newString.startCase = function startcase() {
  * @returns {string}
  */
 newString.camelCase = function camelcase() {
-	return camelCase(this);
+	return camelCase(this.toLowerCase());
 };
 
 /**
@@ -47,4 +48,14 @@ newString.contains = function contains(str) {
 	return this.indexOf(str) !== -1;
 };
 
+/**
+ * Checks to see if the value is a string or not
+ * @param {string} str - the string to check
+ * @returns {boolean}
+ */
+mainString.isString = function isString(str) {
+	return typeof str === 'string';
+};
+
 assignExtensions(String.prototype, newString);
+assignExtensions(String, mainString);
